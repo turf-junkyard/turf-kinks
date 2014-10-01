@@ -1,0 +1,28 @@
+{
+  "name": "turf-kinks",
+  "version": "1.0.0",
+  "description": "turf kinks module",
+  "main": "index.js",
+  "dependencies": {
+    "tape": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Turfjs/turf-kinks.git"
+  },
+  "keywords": [
+    "turf",
+    "kinks",
+    "self-intersection"
+  ],
+  "author": "morganherlocker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf-kinks/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf-kinks"
+}
