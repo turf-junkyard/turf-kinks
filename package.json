@@ -5,6 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "tape": "^3.0.0",
+    "turf-featurecollection": "^0.1.0",
+    "turf-point": "^0.1.6",
     "turf-polygon": "^0.1.1"
   },
   "devDependencies": {},

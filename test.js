@@ -7,24 +7,24 @@ test('kinks', function(t){
         "coordinates": [
           [
             [
-              -45.703125,
-              -3.381823735328289
+              -12.034835815429688,
+              8.901183448260598
             ],
             [
-              -54.9755859375,
-              -3.9519408561575946
+              -12.060413360595701,
+              8.899826693726117
             ],
             [
-              -47.9443359375,
-              -13.539200668930802
+              -12.036380767822266,
+              8.873199368734273
             ],
             [
-              -54.58007812499999,
-              -13.752724664396975
+              -12.059383392333983,
+              8.871418491385919
             ],
             [
-              -45.703125,
-              -3.381823735328289
+              -12.034835815429688,
+              8.901183448260598
             ]
           ]
         ]
@@ -32,7 +32,7 @@ test('kinks', function(t){
 
   var hourglassKinks = kinks(hourglass)
   t.ok(hourglassKinks, 'get self intersection from hourglass polygon')
-  t.equal(hourglassKinks.features.length, 1)
+  t.equal(hourglassKinks.intersections.features.length, 2)
 
   var triple = {
         "type": "Polygon",
@@ -73,9 +73,10 @@ test('kinks', function(t){
           ]
         ]
       }
-    }
 
   var tripleKinks = kinks(triple)
   t.ok(tripleKinks, 'get self intersection from hourglass polygon')
-  t.equal(tripleKinks.features.length, 3)
+  t.equal(tripleKinks.intersections.features.length, 6)
+
+  t.end()
 })
