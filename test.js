@@ -75,7 +75,7 @@ test('kinks', function(t){
       }
 
   var tripleKinks = kinks(triple)
-  t.ok(tripleKinks, 'get self intersection from hourglass polygon')
+  t.ok(tripleKinks, 'get self intersection from triple intersecting polygon')
   t.equal(tripleKinks.intersections.features.length, 6)
 
   t.end()
