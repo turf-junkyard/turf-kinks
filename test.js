@@ -1,5 +1,5 @@
-var test = require('tape')
-var kinks = require('./')
+var test = require('tape');
+var kinks = require('./');
 
 test('kinks', function(t){
   var hourglass = {
@@ -28,11 +28,11 @@ test('kinks', function(t){
             ]
           ]
         ]
-      }
+      };
 
-  var hourglassKinks = kinks(hourglass)
-  t.ok(hourglassKinks, 'get self intersection from hourglass polygon')
-  t.equal(hourglassKinks.intersections.features.length, 2)
+  var hourglassKinks = kinks(hourglass);
+  t.ok(hourglassKinks, 'get self intersection from hourglass polygon');
+  t.equal(hourglassKinks.intersections.features.length, 2);
 
   var triple = {
         "type": "Polygon",
@@ -72,11 +72,11 @@ test('kinks', function(t){
             ]
           ]
         ]
-      }
+      };
 
-  var tripleKinks = kinks(triple)
-  t.ok(tripleKinks, 'get self intersection from triple intersecting polygon')
-  t.equal(tripleKinks.intersections.features.length, 6)
+  var tripleKinks = kinks(triple);
+  t.ok(tripleKinks, 'get self intersection from triple intersecting polygon');
+  t.equal(tripleKinks.intersections.features.length, 6);
 
-  t.end()
-})
+  t.end();
+});

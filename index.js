@@ -1,30 +1,30 @@
-var polygon = require('turf-polygon'),
-    point = require('turf-point'),
-    fc = require('turf-featurecollection')
+var polygon = require('turf-polygon');
+var point = require('turf-point');
+var fc = require('turf-featurecollection');
 
 module.exports = function(polyIn) {
   var poly;
-  var results = {intersections: fc([]), fixed: null}
+  var results = {intersections: fc([]), fixed: null};
   if (polygon.type === 'Feature') {
-    poly = polyIn.geometry
+    poly = polyIn.geometry;
   } else {
-    poly = polyIn    
+    poly = polyIn;
   }
-  var intersectionHash = {}
+  var intersectionHash = {};
   poly.coordinates.forEach(function(ring1){
     poly.coordinates.forEach(function(ring2){
       for(var i = 0; i < ring1.length-1; i++) {
         for(var k = 0; k < ring2.length-1; k++) {
           var intersection = lineIntersects(ring1[i][0],ring1[i][1],ring1[i+1][0],ring1[i+1][1],
-            ring2[k][0],ring2[k][1],ring2[k+1][0],ring2[k+1][1])
+            ring2[k][0],ring2[k][1],ring2[k+1][0],ring2[k+1][1]);
           if(intersection) {
-            results.intersections.features.push(point(intersection[0], intersection[1]))
+            results.intersections.features.push(point(intersection[0], intersection[1]));
           }
         }
       }
     })
   })
-  return results
+  return results;
 }
 
 
