@@ -80,3 +80,42 @@ test('kinks', function(t){
 
   t.end();
 });
+
+test('kinks', function (t) {
+  var feature = {
+    type: 'Feature',
+    geometry: {
+      type: 'Polygon',
+      coordinates: [
+        [
+          [
+            -12.034835815429688,
+            8.901183448260598
+          ],
+          [
+            -12.060413360595701,
+            8.899826693726117
+          ],
+          [
+            -12.036380767822266,
+            8.873199368734273
+          ],
+          [
+            -12.059383392333983,
+            8.871418491385919
+          ],
+          [
+            -12.034835815429688,
+            8.901183448260598
+          ]
+        ]
+      ]
+    }
+  };
+  var featureKinks = kinks(feature);
+
+  t.ok(featureKinks, 'get self intersection from hourglass polygon feature');
+  t.equal(featureKinks.intersections.features.length, 2);
+
+  t.end();
+});
