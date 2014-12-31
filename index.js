@@ -5,7 +5,7 @@ var fc = require('turf-featurecollection');
 module.exports = function(polyIn) {
   var poly;
   var results = {intersections: fc([]), fixed: null};
-  if (polygon.type === 'Feature') {
+  if (polyIn.type === 'Feature') {
     poly = polyIn.geometry;
   } else {
     poly = polyIn;
