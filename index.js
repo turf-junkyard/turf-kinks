@@ -1,3 +1,43 @@
+/**
+ * Takes a polygon and detects all self-intersections.
+ *
+ * @module turf/bearing
+ * @param {Polygon} polygon
+ * @returns {FeatureCollection} self-intersections as a FeatureCollection of Point Features
+ * @example
+ * var poly = {
+ *      "type": "Polygon",
+ *      "coordinates": [
+ *       [
+ *        [
+ *          -12.034835815429688,
+ *            8.901183448260598
+ *          ],
+ *          [
+ *            -12.060413360595701,
+ *            8.899826693726117
+ *          ],
+ *          [
+ *            -12.036380767822266,
+ *            8.873199368734273
+ *          ],
+ *          [
+ *            -12.059383392333983,
+ *            8.871418491385919
+ *          ],
+ *          [
+ *            -12.034835815429688,
+ *            8.901183448260598
+ *          ]
+ *        ]
+ *      ]
+ *    }
+ * 
+ * var result = turf.kinks(poly)
+ *
+ * console.log(result)
+ */
+
 var polygon = require('turf-polygon');
 var point = require('turf-point');
 var fc = require('turf-featurecollection');
