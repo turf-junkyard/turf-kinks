@@ -1,7 +1,7 @@
 /**
  * Takes a polygon and detects all self-intersections.
  *
- * @module turf/bearing
+ * @module turf/kinks
  * @param {Polygon} polygon
  * @returns {FeatureCollection} self-intersections as a FeatureCollection of Point Features
  * @example
