@@ -34,8 +34,7 @@
  *    }
  * 
  * var result = turf.kinks(poly)
- *
- * console.log(result)
+ * //=result.intersections
  */
 
 var polygon = require('turf-polygon');
