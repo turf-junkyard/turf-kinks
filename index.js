@@ -2,8 +2,8 @@
  * Takes a polygon and detects all self-intersections.
  *
  * @module turf/kinks
- * @param {Polygon} polygon
- * @returns {FeatureCollection} self-intersections as a FeatureCollection of Point Features
+ * @param {Polygon} polygon a Polygon feature
+ * @returns {FeatureCollection} a FeatureCollection of Point features representing self-intersections
  * @example
  * var poly = {
  *      "type": "Polygon",
