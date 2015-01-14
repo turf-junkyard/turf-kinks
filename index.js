@@ -13,8 +13,12 @@
  *  [-12.034835, 8.901183]
  * ]]);
  * 
- * var result = turf.kinks(poly)
- * //=result.intersections
+ * var kinks = turf.kinks(poly);
+ *
+ * var result = turf.featurecollection(
+ *  kinks.intersections.features.concat(poly));
+ *
+ * //=result
  */
 
 var polygon = require('turf-polygon');
