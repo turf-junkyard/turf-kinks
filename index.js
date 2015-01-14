@@ -5,33 +5,13 @@
  * @param {Polygon} polygon a Polygon feature
  * @returns {FeatureCollection} a FeatureCollection of Point features representing self-intersections
  * @example
- * var poly = {
- *      "type": "Polygon",
- *      "coordinates": [
- *       [
- *        [
- *          -12.034835815429688,
- *            8.901183448260598
- *          ],
- *          [
- *            -12.060413360595701,
- *            8.899826693726117
- *          ],
- *          [
- *            -12.036380767822266,
- *            8.873199368734273
- *          ],
- *          [
- *            -12.059383392333983,
- *            8.871418491385919
- *          ],
- *          [
- *            -12.034835815429688,
- *            8.901183448260598
- *          ]
- *        ]
- *      ]
- *    }
+ * var poly = turf.polygon([[
+ *  [-12.034835, 8.901183],
+ *  [-12.060413, 8.899826],
+ *  [-12.03638, 8.873199],
+ *  [-12.059383, 8.871418],
+ *  [-12.034835, 8.901183]
+ * ]]);
  * 
  * var result = turf.kinks(poly)
  * //=result.intersections
