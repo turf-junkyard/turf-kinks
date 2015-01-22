@@ -41,7 +41,7 @@ module.exports = function(polyIn) {
           var intersection = lineIntersects(ring1[i][0],ring1[i][1],ring1[i+1][0],ring1[i+1][1],
             ring2[k][0],ring2[k][1],ring2[k+1][0],ring2[k+1][1]);
           if(intersection) {
-            results.intersections.features.push(point(intersection[0], intersection[1]));
+            results.intersections.features.push(point([intersection[0], intersection[1]]));
           }
         }
       }
