@@ -20,7 +20,7 @@
  *     ]]
  *   }
  * };
- * 
+ *
  * var kinks = turf.kinks(poly);
  *
  * var resultFeatures = kinks.intersections.features.concat(poly);
@@ -32,48 +32,50 @@
  * //=result
  */
 
-var polygon = require('turf-polygon');
 var point = require('turf-point');
 var fc = require('turf-featurecollection');
 
 module.exports = function(polyIn) {
   var poly;
-  var results = {intersections: fc([]), fixed: null};
+  var results = {
+    intersections: fc([]),
+    fixed: null
+  };
   if (polyIn.type === 'Feature') {
     poly = polyIn.geometry;
   } else {
     poly = polyIn;
   }
-  var intersectionHash = {};
-  poly.coordinates.forEach(function(ring1){
-    poly.coordinates.forEach(function(ring2){
-      for(var i = 0; i < ring1.length-1; i++) {
-        for(var k = 0; k < ring2.length-1; k++) {
-          var intersection = lineIntersects(ring1[i][0],ring1[i][1],ring1[i+1][0],ring1[i+1][1],
-            ring2[k][0],ring2[k][1],ring2[k+1][0],ring2[k+1][1]);
-          if(intersection) {
+  poly.coordinates.forEach(function(ring1) {
+    poly.coordinates.forEach(function(ring2) {
+      for (var i = 0; i < ring1.length - 1; i++) {
+        for (var k = 0; k < ring2.length - 1; k++) {
+          var intersection = lineIntersects(ring1[i][0], ring1[i][1], ring1[i + 1][0], ring1[i + 1][1],
+            ring2[k][0], ring2[k][1], ring2[k + 1][0], ring2[k + 1][1]);
+          if (intersection) {
             results.intersections.features.push(point([intersection[0], intersection[1]]));
           }
         }
       }
-    })
-  })
+    });
+  });
   return results;
-}
+};
 
 
 // modified from http://jsfiddle.net/justin_c_rounds/Gd2S2/light/
 function lineIntersects(line1StartX, line1StartY, line1EndX, line1EndY, line2StartX, line2StartY, line2EndX, line2EndY) {
   // if the lines intersect, the result contains the x and y of the intersection (treating the lines as infinite) and booleans for whether line segment 1 or line segment 2 contain the point
-  var denominator, a, b, numerator1, numerator2, result = {
-    x: null,
-    y: null,
-    onLine1: false,
-    onLine2: false
-  };
+  var denominator, a, b, numerator1, numerator2,
+    result = {
+      x: null,
+      y: null,
+      onLine1: false,
+      onLine2: false
+    };
   denominator = ((line2EndY - line2StartY) * (line1EndX - line1StartX)) - ((line2EndX - line2StartX) * (line1EndY - line1StartY));
-  if (denominator == 0) {
-    if(result.x != null && result.y != null) {
+  if (denominator === 0) {
+    if (result.x !== null && result.y !== null) {
       return result;
     } else {
       return false;
@@ -99,10 +101,9 @@ function lineIntersects(line1StartX, line1StartY, line1EndX, line1EndY, line2Sta
     result.onLine2 = true;
   }
   // if line1 and line2 are segments, they intersect if both of the above are true
-  if(result.onLine1 && result.onLine2){
+  if (result.onLine1 && result.onLine2) {
     return [result.x, result.y];
-  }
-  else {
+  } else {
     return false;
   }
 }
