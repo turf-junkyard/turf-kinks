@@ -1,10 +1,10 @@
 /**
- * Takes a {@link Polygon} feature and returns a {@link FeatureCollection} of {@link Point} features at all self-intersections.
+ * Takes a polygon and returns points at all self-intersections.
  *
  * @module turf/kinks
  * @category misc
- * @param {Polygon} polygon a Polygon feature
- * @returns {FeatureCollection} a FeatureCollection of {@link Point} features representing self-intersections
+ * @param {Feature<Polygon>} polygon input polygon
+ * @returns {FeatureCollection<Point>} self-intersections
  * @example
  * var poly = {
  *   "type": "Feature",
