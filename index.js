@@ -1,5 +1,5 @@
 /**
- * Takes a polygon and returns points at all self-intersections.
+ * Takes a {@link Polygon|polygon} and returns {@link Point|points} at all self-intersections.
  *
  * @module turf/kinks
  * @category misc
