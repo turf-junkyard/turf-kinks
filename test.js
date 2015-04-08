@@ -119,3 +119,35 @@ test('kinks', function (t) {
 
   t.end();
 });
+
+
+test('kinks', function (t) {
+  var feature = {
+    "type": "Feature",
+    "properties": {
+      "DN": 1
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [0, 0],
+          [0, 1],
+          [0.25, 1],
+          [0.25, 0],
+          [0.5, 0],
+          [0.5, 1],
+          [1, 1],
+          [1, 0],
+          [0, 0]
+        ]
+      ]
+    }
+  };
+  var featureKinks = kinks(feature);
+
+  t.ok(featureKinks, 'get self-intersection when vertex hits another side');
+  t.equal(featureKinks.intersections.features.length, 4);
+
+  t.end();
+});

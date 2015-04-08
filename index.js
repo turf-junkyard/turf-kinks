@@ -50,6 +50,12 @@ module.exports = function(polyIn) {
     poly.coordinates.forEach(function(ring2) {
       for (var i = 0; i < ring1.length - 1; i++) {
         for (var k = 0; k < ring2.length - 1; k++) {
+          // don't check adjacent sides of a given ring, since of course they intersect in a vertex.
+          if(ring1 === ring2
+          && ( Math.abs(i-k) === 1 || Math.abs(i-k) === ring1.length - 2)) {
+            continue;
+          }
+
           var intersection = lineIntersects(ring1[i][0], ring1[i][1], ring1[i + 1][0], ring1[i + 1][1],
             ring2[k][0], ring2[k][1], ring2[k + 1][0], ring2[k + 1][1]);
           if (intersection) {
@@ -93,11 +99,11 @@ function lineIntersects(line1StartX, line1StartY, line1EndX, line1EndY, line2Sta
   result.y = line1StartY + (a * (line1EndY - line1StartY));
 
   // if line1 is a segment and line2 is infinite, they intersect if:
-  if (a > 0 && a < 1) {
+  if (a >= 0 && a <= 1) {
     result.onLine1 = true;
   }
   // if line2 is a segment and line1 is infinite, they intersect if:
-  if (b > 0 && b < 1) {
+  if (b >= 0 && b <= 1) {
     result.onLine2 = true;
   }
   // if line1 and line2 are segments, they intersect if both of the above are true
