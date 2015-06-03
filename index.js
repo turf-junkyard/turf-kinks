@@ -46,11 +46,19 @@ module.exports = function(polyIn) {
   } else {
     poly = polyIn;
   }
-  poly.coordinates.forEach(function(ring1) {
-    poly.coordinates.forEach(function(ring2) {
-      traverseRings(ring1,ring2,results);
+  
+  if (poly.type === 'Polygon') {
+    poly.coordinates.forEach(function(ring1) {
+      poly.coordinates.forEach(function(ring2) {
+        traverseRings(ring1,ring2,results);
+      });
     });
-  });
+  } else if(poly.type === 'LineString') {
+    traverseRings(poly.coordinates,poly.coordinates,results);
+  } else {
+    throw new Error('input must be a Polygon or LineString Feature or Geometry');
+  }
+  
   return results;
 };
 
