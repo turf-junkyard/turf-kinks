@@ -1,5 +1,5 @@
 /**
- * Takes a {@link Polygon|polygon} and returns {@link Point|points} at all self-intersections.
+ * Takes a {@link Polygon|polygon} or {@link LineString|linestring} and returns {@link Point|points} at all self-intersections.
  *
  * @module turf/kinks
  * @category misc
@@ -48,26 +48,29 @@ module.exports = function(polyIn) {
   }
   poly.coordinates.forEach(function(ring1) {
     poly.coordinates.forEach(function(ring2) {
-      for (var i = 0; i < ring1.length - 1; i++) {
-        for (var k = 0; k < ring2.length - 1; k++) {
-          // don't check adjacent sides of a given ring, since of course they intersect in a vertex.
-          if(ring1 === ring2
-          && ( Math.abs(i-k) === 1 || Math.abs(i-k) === ring1.length - 2)) {
-            continue;
-          }
-
-          var intersection = lineIntersects(ring1[i][0], ring1[i][1], ring1[i + 1][0], ring1[i + 1][1],
-            ring2[k][0], ring2[k][1], ring2[k + 1][0], ring2[k + 1][1]);
-          if (intersection) {
-            results.intersections.features.push(point([intersection[0], intersection[1]]));
-          }
-        }
-      }
+      traverseRings(ring1,ring2,results);
     });
   });
   return results;
 };
 
+function traverseRings(ring1,ring2, results) {
+  for (var i = 0; i < ring1.length - 1; i++) {
+    for (var k = 0; k < ring2.length - 1; k++) {
+      // don't check adjacent sides of a given ring, since of course they intersect in a vertex.
+      if(ring1 === ring2
+      && ( Math.abs(i-k) === 1 || Math.abs(i-k) === ring1.length - 2)) {
+        continue;
+      }
+
+      var intersection = lineIntersects(ring1[i][0], ring1[i][1], ring1[i + 1][0], ring1[i + 1][1],
+        ring2[k][0], ring2[k][1], ring2[k + 1][0], ring2[k + 1][1]);
+      if (intersection) {
+        results.intersections.features.push(point([intersection[0], intersection[1]]));
+      }
+    }
+  }
+}
 
 // modified from http://jsfiddle.net/justin_c_rounds/Gd2S2/light/
 function lineIntersects(line1StartX, line1StartY, line1EndX, line1EndY, line2StartX, line2StartY, line2EndX, line2EndY) {
