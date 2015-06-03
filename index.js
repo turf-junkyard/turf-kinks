@@ -56,7 +56,7 @@ module.exports = function(polyIn) {
 
 function traverseRings(ring1,ring2, results) {
   for (var i = 0; i < ring1.length - 1; i++) {
-    for (var k = 0; k < ring2.length - 1; k++) {
+    for (var k = i; k < ring2.length - 1; k++) {
       // don't check adjacent sides of a given ring, since of course they intersect in a vertex.
       if(ring1 === ring2
       && ( Math.abs(i-k) === 1 || Math.abs(i-k) === ring1.length - 2)) {
